@@ -11,10 +11,10 @@ This package provides two functions: [`envsubst`](#envsubst) and
 variables into otherwise static configuration files.
 
 `load_config_from_file` was created to extend [Flask] app configuration by 
-reading configuration values from files specified by keys of the shape `
-{NAME}_FILE`. After passing those configuration values though `envsubst` 
+reading configuration values from files specified by keys of the shape 
+`{NAME}_FILE`. After passing those configuration values though `envsubst` 
 (using the existing configuration as the context environment), it updates 
-the `{NAME}` key fo the original configuration.
+the `{NAME}` key of the original configuration.
 
 ## Dependencies
 
@@ -31,16 +31,21 @@ pip install configurenv
 
 ### envsubst
 
+With this environment:
+
 ```dotenv
 SERVER_NAME=test.example.com
 ```
 
+Running this Python code:
+
 ```python
 from configurenv import envsubst
 
-envsubst('http://${SERVER_NAME}/endpoint')
-# --> 'http://test.example.com/endpoint'
+url = envsubst('http://${SERVER_NAME}/endpoint')
 ```
+
+Results in `url` having the value `'http://test.example.com/endpoint'`.
 
 ### load_config_from_file
 
